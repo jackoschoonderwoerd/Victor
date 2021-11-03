@@ -55,6 +55,13 @@
           formControlName="price"
           placeholder="price">
       </mat-form-field>
+      <mat-form-field>
+        <input
+          type="number"
+          matInput
+          formControlName="listPosition"
+          placeholder="list position">
+      </mat-form-field>
       <button *ngIf="urlsPresent"
         mat-raised-button
         [disabled]="imageDataForm.invalid"

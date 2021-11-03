@@ -33,7 +33,7 @@ export class DbService {
 
 
   getImages(): Observable<any> {
-    return this.db.collection('victor')
+    return this.db.collection('victor', ref => ref.orderBy('listPosition'))
     // .valueChanges()
     .snapshotChanges()
     .pipe(
@@ -44,15 +44,15 @@ export class DbService {
             title: doc.payload.doc.data().title,
             caption: doc.payload.doc.data().caption,
             price: doc.payload.doc.data().price,
+            listPosition: doc.payload.doc.data().listPosition,
             urls: doc.payload.doc.data().urls,
             filepaths: doc.payload.doc.data().filepaths
           }
         })
       })
     )
-    
-    // return this.data
   }
+
   checkTitleAvailable(title: string) {
     console.log(title);
     const titles = this.getTitles();

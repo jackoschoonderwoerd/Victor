@@ -1,9 +1,9 @@
-<div class="container">
+<div class="container" fxLayout fxLayoutAlign="center center">
 
   <div *ngIf="imageSelected" class="selected-image-container">
     <img class="selected-image" (click)="imageSelected = false" [src]="selectedImageUrl" alt="">
   </div>
-  <ul class="artwork-list" *ngIf="!imageSelected">
+  <ul class="artwork-list" *ngIf="!imageSelected" fxLayout="row">
     <li class="artwork-list-item" *ngFor="let image of images$ | async" fxLayout="column">
       <div class="title">{{image.title}}</div>
       <!-- <div class="caption">{{image.caption}}</div>
@@ -19,6 +19,7 @@
       <div class="thumbnail-container">
         <img class="thumbnail" [src]="image.urls._320x320" alt="">
       </div>
+      <div *ngIf="isAuth$ | async" class="">{{image.listPosition}}</div>
       <div class="info-edit-delete-buttons" fxLayout="column" fxLayoutGap="0.5rem">
         <button
           mat-raised-button class="info" 
@@ -26,14 +27,14 @@
           info
         </button>
         <button
-          *ngIf="isAuthenticated$ | async"
+          *ngIf="isAuth$ | async"
           mat-raised-button 
           class="info" 
           (click)="onEdit(image)">
           edit
         </button>
         <button
-          *ngIf="isAuthenticated$ | async" 
+          *ngIf="isAuth$ | async" 
           mat-raised-button 
           class="info" 
           (click)="onDelete(image)">

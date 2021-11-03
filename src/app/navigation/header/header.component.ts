@@ -5,13 +5,13 @@ import { Observable } from 'rxjs';
 import { AuthService } from 'src/app/auth/auth.service';
 
 import * as fromRoot from './../../app.reducer';
-import * as PROGRAM from './../../program/program.actions'
+
 
 
 import { faBars } from '@fortawesome/free-solid-svg-icons'
 import { Router } from '@angular/router';
 
-import { Artist } from 'src/app/artists/artist.model';
+
 
 
 @Component({
@@ -29,7 +29,7 @@ export class HeaderComponent implements OnInit {
   language: string = 'dutch';
   expositionId: string;
   isShowcaseActive: boolean = false;
-  artist: Artist
+  
   faBars = faBars
   
 
@@ -47,15 +47,12 @@ export class HeaderComponent implements OnInit {
     this.isAdmin$ = this.store.select(fromRoot.getIsAdmin);
     this.isAuth$ = this.store.select(fromRoot.getIsAuth);
     this.store.subscribe((storeData) => {
-      this.artist = storeData.program.artist
+      
     })
   }
 
   onProgram() {
-    if(this.artist) {
-      this.store.dispatch(new PROGRAM.IsShowcaseOpen(false))
-    }
-    this.router.navigate(['/program']);
+   
   }
 
   onToggleSidenav() {

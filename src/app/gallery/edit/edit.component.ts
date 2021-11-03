@@ -24,7 +24,8 @@ export class EditComponent implements OnInit {
     this.form = this.fb.group({
       title: new FormControl(this.data.title, Validators.required),
       caption: new FormControl(this.data.caption, Validators.required),
-      price: new FormControl(this.data.price, Validators.required)
+      price: new FormControl(this.data.price, Validators.required),
+      listPosition: new FormControl(this.data.listPosition, Validators.required)
     })
   }
 

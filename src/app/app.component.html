@@ -6,8 +6,8 @@
   </mat-sidenav>
   <mat-sidenav-content>
     <app-header (sidenavToggle)="sidenav.toggle()"></app-header>
-    <main (scroll)="onScroll($event)">
-      <router-outlet (scroll)="onScroll($event)"></router-outlet>
+    <main>
+      <router-outlet></router-outlet>
       <app-footer></app-footer>
     </main>
   </mat-sidenav-content> 

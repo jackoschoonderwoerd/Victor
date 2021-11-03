@@ -1,18 +1,16 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { AngularFireStorage } from '@angular/fire/storage';
+
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import * as fromRoot from './../../app.reducer'
-import * as STORAGE from './../../gallery/shared/storage.actions'
-import { throwError } from 'rxjs';
-import { catchError, concatMap, last, tap } from 'rxjs/operators';
+
+
+
 import { DbService } from '../shared/db.service';
 import { StorageService } from '../shared/storage.service';
-import { title } from 'process';
 import { ArtWork, ImageUrls } from '../shared/models/artwork.model';
-import { MatSnackBar } from '@angular/material/snack-bar';
+
 import { UiService } from '../shared/ui.service';
-import { timeStamp } from 'console';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmOverwriteComponent } from './confirm-overwrite/confirm-overwrite.component';
 
@@ -81,18 +79,14 @@ export class UploadImageComponent implements OnInit {
     })
   }
 
-  // mainFunction = async () => {
-  //   const result = await this.storageService.asynchronousFunction('')
-  //     .then(res => console.log('RES: ', res))
-  //     .catch(err => console.log(err));
-  //   return result
-  // }
+
 
   initImageDataForm() {
     this.imageDataForm = this.fb.group({
       title: new FormControl('title 01', Validators.required),
       caption: new FormControl('caption 01', Validators.required),
-      price: new FormControl(25, Validators.required)
+      price: new FormControl(25, Validators.required),
+      listPosition: new FormControl(null, Validators.required)
     })
   }
   // onCheckTitleAvailable() {
@@ -135,6 +129,7 @@ export class UploadImageComponent implements OnInit {
       title: imageDataFormValue.title,
       caption: imageDataFormValue.caption,
       price: imageDataFormValue.price,
+      listPosition: imageDataFormValue.listPosition,
       urls: {
         _original: this.completedUrls._original,
         _200x200: this.completedUrls._200x200,

@@ -4,8 +4,8 @@ import { Observable } from 'rxjs';
 import * as fromRoot from './../../app.reducer'
 
 import { AuthService } from 'src/app/auth/auth.service';
-import { Artist } from 'src/app/artists/artist.model';
-import * as PROGRAM from './../../program/program.actions'
+
+
 
 
 
@@ -21,7 +21,7 @@ export class SidenavComponent implements OnInit {
   userEmail$: Observable<string>;
   isAdmin$: Observable<boolean>;
   isAuth$: Observable<boolean>;
-  artist: Artist;
+  
 
 
   constructor(
@@ -34,21 +34,14 @@ export class SidenavComponent implements OnInit {
     this.userEmail$ = this.store.select(fromRoot.getUserEmail);
     this.isAdmin$ = this.store.select(fromRoot.getIsAdmin);
     this.isAuth$ =  this.store.select(fromRoot.getIsAuth);
-    this.store.subscribe((storeData) => {
-      this.artist = storeData.program.artist
-    })
+   
   }
 
   onClose() {
     this.closeSidenav.emit();
   }
 
-  onProgram() {
-    if(this.artist) {
-      this.store.dispatch(new PROGRAM.IsShowcaseOpen(false));
-    }
-      this.onClose();
-  }
+ 
   
   onLogOut() {
     this.authService.logOut();

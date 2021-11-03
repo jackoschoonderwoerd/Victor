@@ -38,12 +38,9 @@
           <li><a routerLinkActive="active-link" routerLink="/home">HOME</a></li>
           <li *ngIf="(userEmail$ | async)">USER: {{ userEmail$ | async}}</li>
           <li *ngIf="(isAdmin$ | async)">ADMIN: {{ isAdmin$ | async}}</li>
-          
-          <!-- <li><a routerLinkActive="active-link" (click)="onProgram()">PROGRAM</a></li> -->
-          <li><a routerLink="/program" routerLinkActive="active-link" (click)="onProgram()">PROGRAM</a></li>
-          <li *ngIf="(isAuth$ | async)"><a routerLinkActive="active-link" routerLink="/artists">ARTISTS</a></li>
+
           <li ><a routerLinkActive="active" routerLink="/gallery">gallery</a></li>
-          <li ><a routerLinkActive="active" routerLink="/gallery/upload-image">upload image</a></li>
+          <li *ngIf="isAuth$ | async" ><a routerLinkActive="active" routerLink="/gallery/upload-image">upload</a></li>
           <li *ngIf="!(isAuth$ | async)" ><a routerLinkActive="active-link" routerLink="auth/login">LOGIN</a></li>
           <!-- <li *ngIf="!(isAuth$ | async)" ><a routerLinkActive="active-link" routerLink="/signup">SIGN UP</a></li> -->
           <li *ngIf="(isAuth$ | async)" (click)="onLogOut()">LOG OUT</li>

@@ -1,10 +1,11 @@
 export interface ArtWork {
-  title: string,
-  caption: string,
-  price: number,
-  urls: ImageUrls,
-  filepaths: string[]
-  id?: string
+  title: string;
+  caption: string;
+  price: number;
+  urls: ImageUrls;
+  filepaths: string[];
+  listPosition: number;
+  id?: string;
 }
 
 export interface ImageUrls {
