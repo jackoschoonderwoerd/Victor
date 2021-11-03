@@ -1,0 +1,39 @@
+.footer-container {
+  height: 100%;
+  background-color: var(--jazz-black);
+  color: var(--jazz-orange);
+  
+  @media (min-width: 481px) and (max-width: 767px) {
+    // background-color: var(--background-color-2);
+  }
+  .footer-content {
+    letter-spacing: 5px;
+    // color: var(--color-1);
+    // @media (min-width: 481px) and (max-width: 767px) {
+    //   color: var(--color-2)
+    // }
+  }
+}
+
+
+
+
+@media (max-width: 480px) {
+  /* Device = Most of the Smartphones Mobiles (Portrait) Screen = 320px to 479px */
+}
+
+@media (min-width: 481px) and (max-width: 767px) {
+  /* Device = Low Resolution Tablets, Mobiles (Landscape) Screen = 481px to 767px */
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  /* Device = Tablets, Ipads (portrait) Screen = 768px to 1024px */
+}
+
+@media (min-width: 1025px) and (max-width: 1280px) {
+  /* Device = Laptops, Desktops Screen = 1025px to 1280px */
+}
+
+@media (min-width: 1281px) {
+  /* Device = Desktops Screen = 1281px to higher resolution desktops */
+}

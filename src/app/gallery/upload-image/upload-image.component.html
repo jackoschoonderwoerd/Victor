@@ -1,0 +1,66 @@
+<div class="container" fxLayout fxLayoutAlign="center">
+  <div class="forms-container" fxLayout="column" fxLayoutGap="1rem">
+    <!-- <form
+      class="checkTitleAvailableForm"
+      [formGroup]="checkTitleAvailableForm" 
+      fxLayout="column" 
+      fxLayoutGap="1rem">
+      <mat-form-field>
+        <input
+          matInput
+          type="text"
+          formControlName="title"
+          placeholder="title">
+      </mat-form-field>
+      <button
+        [disabled]="checkTitleAvailableForm.invalid"
+        mat-raised-button
+        (click)="onCheckTitleAvailable()">
+        checkTitleAvailable
+      </button>
+    </form> -->
+    <div class="preview">
+      <!-- {{completedUrls._200x200}} -->
+      <img [src]="completedUrls._200x200" alt="">
+    </div>
+    <mat-spinner *ngIf="retrievingData"></mat-spinner>
+    <input
+        #fileInput
+        type="file"
+        (change)="onFileSelected($event)">
+    <form
+      *ngIf="fileSelected"
+      class="imageDataForm"
+      [formGroup]="imageDataForm"
+      fxLayout="column"
+      fxLayoutGap="1rem">
+      <mat-form-field>
+        <input
+          type="text"
+          matInput
+          formControlName="title"
+          placeholder="title">
+      </mat-form-field>
+      <mat-form-field>
+        <input
+          type="text"
+          matInput
+          formControlName="caption"
+          placeholder="caption">
+      </mat-form-field>
+      <mat-form-field>
+        <input
+          type="number"
+          matInput
+          formControlName="price"
+          placeholder="price">
+      </mat-form-field>
+      <button *ngIf="urlsPresent"
+        mat-raised-button
+        [disabled]="imageDataForm.invalid"
+        (click)="onStoreImageDataInDb()">
+        addImageDataToDb
+      </button>
+    </form>
+  </div>
+</div>

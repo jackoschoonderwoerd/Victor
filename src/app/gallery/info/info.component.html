@@ -1,0 +1,14 @@
+<div class="container" mat-dialog-close>
+  
+  <div class="title">
+    {{data.title}}
+  </div>
+  <div class="caption">
+    {{data.caption}}
+  </div>
+  <div class="price">
+    {{data.price | currency:"EUR"}}
+  </div>
+  <fa-icon 
+     [icon]="faWindowClose" class="close-icon"></fa-icon>
+</div>

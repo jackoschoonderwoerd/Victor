@@ -1,0 +1,43 @@
+
+
+<form
+  [formGroup]="form"
+  fxLayout="column">
+  <mat-form-field>
+    <input
+      type="text"
+      matInput
+      formControlName="title"
+      placeholder="title">
+  </mat-form-field>
+  <mat-form-field>
+    <input
+      type="text"
+      matInput
+      formControlName="caption"
+      placeholder="caption">
+  </mat-form-field>
+  <mat-form-field>
+    <textarea
+      type="number"
+      matInput
+      formControlName="price"
+      placeholder="price">
+    </textarea>
+  </mat-form-field>
+  <div
+    class="buttons"
+    fxLayout="column"
+    fxLayoutGap=".5rem">
+    <button
+      mat-raised-button
+      [mat-dialog-close]="form.value">
+      submit
+    </button>
+    <button
+      mat-raised-button
+      mat-dialog-close>
+      cancel
+    </button>
+  </div>
+</form>

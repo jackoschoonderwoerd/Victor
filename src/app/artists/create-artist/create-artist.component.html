@@ -1,0 +1,78 @@
+
+
+<div class="wrapper" fxLayout="column" fxLayoutAlign="center center">
+  <h1>
+    {{editMode ? 'UPDATE' : 'CREATE'}}
+  </h1>
+  <form
+    
+    fxLayout="column"
+    class="create-artist-form"
+    [formGroup]="form"
+    (ngSubmit)="onCreateOrUpdateArtist()">
+
+    <mat-form-field *ngIf="artist$ | async">
+      <input
+        class="artist-id"
+        type="text"
+        matInput
+        formControlName="artistId"
+        placeholder="ARTIST ID"
+        readonly>
+    </mat-form-field>
+    
+    <mat-form-field>
+      <input
+        class="name"
+        type="text"
+        matInput
+        formControlName="name"
+        placeholder="NAME">
+    </mat-form-field>
+
+    <mat-form-field>
+      <input
+        class="instrument"
+        type="text"
+        matInput
+        formControlName="instrument"
+        placeholder="INSTRUMENT">
+    </mat-form-field>
+
+
+    <img  [src]="form.get('imageUrl').value" class="image" alt="">
+    <div class="file-selector-container">
+      <input
+        class="file-input"
+        type="file"
+        (change)="uploadThumbnail($event)">
+    </div>
+
+    <mat-form-field class="biography-form-field" appearance="fill">
+      <mat-label>BIOGRAPHY (HTML)</mat-label>
+      <textarea
+        class="biography-content"
+        matInput 
+        placeholder="ENTER HTML"
+        formControlName="biography"
+        oninput='this.style.height = "";
+        this.style.height = this.scrollHeight + "px"'>
+      </textarea>
+    </mat-form-field>
+
+    <div class="upload-progress" *ngIf="(percentageChanges$ | async) as percentage">
+      <mat-progress-bar
+        class="progress-bar" 
+        mode="determinate"
+        [value]="percentage"></mat-progress-bar>
+        <span>{{percentage / 100 | percent}}</span>
+    </div>
+
+    <button class="edit-button" [disabled]="processingImage || form.invalid" mat-raised-button >
+      {{editMode ? 'UPDATE ARTIST' : 'CREATE ARTIST'}}
+    </button>
+    <button class="cancel-button" mat-raised-button color="primary">
+      <a routerLink="/artists">CANCEL</a>
+    </button>
+  </form>
+</div>

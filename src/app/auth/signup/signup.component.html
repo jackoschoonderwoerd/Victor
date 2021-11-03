@@ -1,0 +1,22 @@
+<section>
+  <div class="signup-form" fxLayout fxLayoutAlign="center">
+    <form [formGroup]="signupForm" fxLayout="column" fxLayoutGap="25px" fxLayoutAlign="center center" (ngSubmit)="onSubmitSignupForm()">
+      <mat-form-field>
+        <input
+          matInput
+          type="email"
+          formControlName="email"
+          placeholder="EMAIL">
+      </mat-form-field>
+      <mat-form-field>
+        <input
+          matInput
+          type="password"
+          formControlName="password"
+          placeholder="PASSWORD">
+      </mat-form-field>
+      <mat-spinner *ngIf="isLoading$ | async"></mat-spinner>
+      <button *ngIf="!(isLoading$ | async)" mat-raised-button color="primary" type="submit">SIGN UP</button>
+    </form>
+  </div>
+</section>

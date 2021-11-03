@@ -1,0 +1,6 @@
+.location {
+  height: calc(100vh - 106px);
+  @media (min-width: 600px) {
+      height: calc(100vh - 114px);
+  }
+}

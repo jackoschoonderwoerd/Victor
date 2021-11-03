@@ -1,0 +1,63 @@
+.wrapper {
+  background-color: var(--jazz-white);
+  padding: 15px;
+  .main {
+    max-width: 350px;
+    .book {
+      font-size: 1.5rem;
+      display: inline-block;
+      padding-right: 20px;
+    }
+    .gig {
+      display: inline-block;
+      span {
+        font-size: 1.5rem;
+      }
+    }
+    form {
+      
+      mat-checkbox {
+        margin-bottom: 10px;
+      }
+      button {
+        margin: 4px 0 4px 0;
+        text-transform: uppercase;
+        font-size: 1.3rem;
+      }
+    }
+    .artist-list {
+      .artist-list-item {
+        margin-bottom: 6px;
+        .name-asterisk-list-position-delete {
+          .name-asterisk {
+            .name {
+              font-size: 1.3rem;
+            }
+            .asterisk {
+              font-size: 1.3rem;
+            }
+          }
+          .list-position-delete {
+            .list-position {
+              font-size: 1.3rem;
+            }
+            .delete {
+              margin-left: 10px;
+              color: var(--jazz-red);
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.isFeatured {
+  // color: red;
+  // border: 1px solid red;
+  // font-weight: 600;
+  // font-size: 1.5rem;
+}
+.isFeatured::before {
+  content: "(F)";
+}

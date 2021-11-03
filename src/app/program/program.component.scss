@@ -1,0 +1,163 @@
+mat-sidenav-container {
+
+    height: calc(100vh - 106px);
+    @media (min-width: 600px) {
+        height: calc(100vh - 114px);
+    }
+    mat-sidenav {
+        background-color: red;
+    }
+    mat-sidenav-content {
+        .show-all {
+            margin: .5rem;
+            font-size: 1.3rem;
+        }
+        .mat-spinner-container {
+            // border: 2px solid white;
+            padding: 3rem;
+        }
+        main {
+            background-color: var(--jazz-black);
+            .wrapper {
+                // border: 2px solid red;
+                .accordion-container {
+                    width: 100%;
+                    max-width: 400px;
+                    .year-accordion{
+                        .year-expansion-panel {
+                            background-color: var(--jazz-orange);
+                            padding: 0.5rem;
+                            .year-expansion-panel-header {
+                                background-color: var(--jazz-orange);
+                                border: 3px solid var(--jazz-green);
+                                // margin: 5px;
+                                .year-panel-title {
+                                    font-size: 2rem;
+                                    justify-content: center;
+                                    color: var(--jazz-black);
+                                }
+                            }
+                            .month-accordion {
+                                .month-expansion-panel {
+                                    // background-color: var(--jazz-orange);
+                                    .month-expansion-panel-header { // SEPTEMBER
+                                        background-color: var(--jazz-red);
+                                        border: 2px solid var(--jazz-black);
+                                        margin: 3px;
+                                        .month-panel-title { // 31st
+                                            
+                                            
+                                            color: var(--jazz-black);
+                                            justify-content: center;
+                                            font-size: 1.5rem;
+                                        }
+                                    }
+                                    .gig-accordion {
+                                        .gig-expansion-panel {
+                                            background-color: red;
+                                            padding-bottom: 0.5em; 
+                                            .gig-expansion-panel-header { // 26th artist-name
+                                                // border: 3px solid yellow;
+                                                
+                                                background-color: var(--jazz-red) !important;
+                                                
+                                                
+                                                .gig-panel-title {
+                                                    padding: .3rem 0;
+                                                    // width: 2rem;
+                                                    font-size: 1.3rem;
+                                                    // border: 3px solid blue;
+                                                    // width: 0rem !important;
+                                                    .gig-name-container { // 26th
+                                                        border: 1px solid var(--jazz-black);
+                                                        border-radius: 3px;
+                                                        padding: .3rem;
+                                                        // width: 0;
+                                                        
+                                                        // border: 3px solid purple;
+                                                    }                                     
+                                                }
+                                                .gig-panel-description {
+                                                    color: var(--jazz-black);
+                                                    // color: red;
+                                                    font-size: 1.3rem;
+                                                    // width: 3rem;
+                                                    // border: 3px solid green;
+                                                    align-content: flex-start !important;
+                                                    justify-content: flex-start !important;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.mat-drawer-inner-container  {
+    background-color: var(--jazz-black) ; 
+}
+
+mat-sidenav-content {
+    background-color: var(--jazz-black);
+}
+
+mat-expansion-panel-header {
+    padding: 0 11px !important;
+}
+
+mat-expansion-panel-content {
+    padding: 0 var(--rem-m) !important;
+}
+
+.mat-expansion-panel-body {
+    padding: 0 !important;
+}
+
+.bookings-list {
+    padding: 0 var(--rem-s) !important;
+}
+.bookings-list-item {
+    padding: var(--rem-ms) var(--rem-m) !important ;
+    border: 1px solid var(--jazz-black);
+    border-radius: 3px;
+    margin: 3px;
+    .name-instrument-container {
+        // border: 1px solid pink;
+        .chevron-name-instrument {
+            .chevron-name {
+                .chevron {
+                    color: var(--jazz-black);
+                    font-size: .9rem;
+                }
+                .name {
+                    margin-right: 1rem;
+                }
+                
+            }
+        }
+    }
+}
+.month-selected {
+    background-color: var(--jazz-orange);
+}
+.monthTitleExpanded {
+    background-color: var(--jazz-orange);
+}
+// .month-name-container {
+//     border: 1px solid black;
+// }
+.two-featured {
+    // color: pink;
+    font-size: 0.7rem;
+    padding: 0;
+} 
+
+.mat-expansion-toggle-indicator-after {
+    // background-color: lightgreen;
+}
