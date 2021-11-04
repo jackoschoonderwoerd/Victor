@@ -1,39 +1,52 @@
 <div class="lists-container" fxLayout="column" fxLayoutAlign="space-between">
   <mat-nav-list>
-  
-    <a class="nav-list-item" mat-list-item routerLink="/home" (click)="onClose()">
-      H O M E
+    <a
+      class="nav-list-item" 
+      mat-list-item 
+      routerLink="/home" 
+      (click)="onClose()">
+      <span>
+        home
+      </span>
     </a>
-
-
-    <a class="nav-list-item" mat-list-item routerLink="/location" (click)="onClose()">
-      L O C A T I O N
+    <a 
+      class="nav-list-item" 
+      mat-list-item 
+      routerLink="/gallery" 
+      (click)="onClose()">
+      <span>
+        gallery
+      </span>
     </a>
-  
-  
   </mat-nav-list>
-  <mat-nav-list>
-    <a *ngIf="(isAuth$ | async)" class="nav-list-item" mat-list-item routerLink="/artists" (click)="onClose()">
-      A R T I S T S
-    </a>
-    
-    <a *ngIf="!(isAuth$ | async)" class="nav-list-item" mat-list-item routerLink="auth/login" (click)="onClose()">
-      L O G I N
-    </a>
-    
-    <!-- 
-      <a
-        *ngIf="!(isAuth$ | async)"
-        class="nav-list-item"
-        mat-list-item
-        routerLink="auth/signup"
-        (click)="onClose()">
-        SIGNUP
-      </a> -->
-    
-    <a *ngIf="(isAuth$ | async)" class="nav-list-item" mat-list-item (click)="onLogOut()">
-      <span>L O G O U T</span>
-    </a>
 
+  <mat-nav-list>
+    <a 
+      *ngIf="(isAuth$ | async)" 
+      class="nav-list-item" 
+      mat-list-item 
+      routerLink="/gallery/upload-image" 
+      (click)="onClose()">
+      <span>  
+        upload
+      </span>
+    </a>
+    <a
+      *ngIf="!(isAuth$ | async)" 
+      class="nav-list-item" 
+      mat-list-item 
+      routerLink="auth/login" 
+      (click)="onClose()">
+      <span>
+        login
+      </span>
+    </a>
+    <a
+      *ngIf="(isAuth$ | async)" 
+      class="nav-list-item" 
+      mat-list-item
+      (click)="onLogOut()">
+      <span>logout</span>
+    </a>
   </mat-nav-list>
 </div>

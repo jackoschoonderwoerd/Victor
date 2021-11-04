@@ -1,9 +1,9 @@
-iframe {
-  // width: 100vw;
-  
-}
+
 .section {
+  // border: 3px solid red;
   .main {
+    padding: 1rem;
+    // border: 3px solid yellow;
     max-width: 450px;
     .title-flags {
       .title {
@@ -24,38 +24,12 @@ iframe {
         }
       }
     }
-    .schedule {
-      font-size: 1.5rem;
-    }
-    .hr {
-      margin: 1rem;
-    }
-    .address {
-      font-size: 1.3rem;
-    }
+    
     .content {
       margin: 1.5rem 0;
       text-align: justify;
     }
-    .author {
-      font-style: italic;
-    }
-    .date {
-    }
-    .links {
-      margin-top: 1.5rem;
-      .header {
-        
-      }
-      ul {
-        li {
-          
-          a::before {
-            content: ' - '
-          }
-        }
-      }
-    }
+    
   }
 }
 .background-image {

@@ -10,6 +10,7 @@ import { ConfirmOverwriteComponent } from './upload-image/confirm-overwrite/conf
 import { EditComponent } from './edit/edit.component';
 import { InfoComponent } from './info/info.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { ShowDetailComponent } from './show-detail/show-detail.component';
 
 
 
@@ -19,7 +20,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     UploadImageComponent,
     ConfirmOverwriteComponent,
     EditComponent,
-    InfoComponent
+    InfoComponent,
+    ShowDetailComponent
   ],
   imports: [
     CommonModule,

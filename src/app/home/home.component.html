@@ -1,113 +1,56 @@
-<div class="section">
+<div class="section" fxLayout fxLayoutAlign="center">
   <div class="main">
-    <div class="directions">
-      <div class="title-flags" fxLayout fxLayoutAlign="space-between">
-        <div class="title">
-          victor
-        </div>
-        <div class="flags" fxLayout fxLayoutGap="1rem">
-          <img
-            *ngIf="language === 'english'"
-            (click)="selectLanguage('dutch')"
-            fxLayoutAlign="end"
-            class="dutch-flag flag"
-            src="../../assets/images/flags/nl-flag.png"
-            alt="NL">
-          <img
-            *ngIf="language === 'dutch'"
-            (click)="selectLanguage('english')"
-            class="english-flag flag"
-            src="../../assets/images/flags/uk-flag.png"
-            alt="EN">
-        </div>
-      </div>
-      <div
-        class="schedule"
-        *ngIf="language === 'dutch'">
-        Zondag van 16:30 tot 19:00
-      </div>
-      <div
-        class="schedule"
-        *ngIf="language === 'english'">
-        Sundays from 16:30 untill 19:00
-      </div>
-      <hr class="hr">
-      <div class="address">
-        Café de Engelbewaarder
-        <br>
-        Kloveniersburgwal 59 1011 JZ Amsterdam
-      </div>
 
-      <div
-        class="content"
-        *ngIf="language === 'dutch'">
-        De langstlopende en volgens sommigen beste sessie is die van Café De Engelbewaarder op de Kloveniersburgwal,
-        zondagmiddag. Hier zijn drummer Victor de Boo, bassist Jacko Schoonderwoerd en pianist Leo Bouwmeester
-        gastheren,
-        die de bijeenkomsten inzetten met een set en de deelnames regelen. De onlangs overleden saxofonist Sean Bergin
-        had
-        hier met hen de leiding. Bergin wordt node gemist, maar de sfeer is niet wezenlijk veranderd. Soms loopt er nog
-        weleens een toerist langs die uitroept: "Where's the big man?" Gaandeweg de middag loopt de Engelbewaarder
-        steevast vol met wat ouder publiek en gaan de muzikanten flink los.
+    <div class="title-flags" fxLayout fxLayoutAlign="space-between">
+      <div class="title">
+        victor de boo
       </div>
-
-      <div
-        *ngIf="language === 'english'"
-        class="content">
-        <p>
-          Renowned professionals and young talent will treat you to live jazz every Sunday afternoon. Come to café De
-          Engelbewaarder in Amsterdam to enjoy a tasty specialty beer and the longest running live jazz session in the
-          Netherlands!
-        </p>
-        <h4>
-          Color your Sunday afternoon!
-        </h4>
-        <p>
-          For almost 40 years, café De Engelbewaarder on Kloveniersburgwal has been home to perhaps the most famous
-          weekly
-          live jazz session in the Netherlands. Legendary jazz musicians such as Woody Shaw, Archie Shepp and David
-          Murray
-          have performed there. To this day, café de Engelbewaarder is the place where you can enjoy top-level jazz on a
-          lazy Sunday afternoon.
-
-          After the opening set, professionals from home and abroad were invited to play along. This creates a lively
-          session full of surprises and at a high level every Sunday afternoon. The session always ends with all
-          participants going wild as if it were a big band.
-
-          The permanent backing band consisting of Leo Bouwmeester on piano, Jacko Schoonderwoerd on double bass and
-          Victor de Boo on drums invites a different guest player every week.
-        </p>
-        <h4>
-          Entrance is free!
-        </h4>
-      </div>
-
-      <div
-        class="author"
-        *ngIf="language === 'dutch'">
-        Jan Jasper Tamboer
-      </div>
-      <div
-        class="date"
-        *ngIf="language === 'dutch'">
-        Parool 29 januari 2013
-      </div>
-      <div class="links">
-        <div class="header">
-          LINKS:
-        </div>
-        <ul>
-          <li class="expositie">
-            <a href="https://www.cafedeengelbewaarder.nl/exhibitions">
-              <span *ngIf="language === 'dutch'">Huidige expositie:</span>
-              <span *ngIf="language === 'english'">Current exhibition:</span> ODE AAN FRANS SCHELLEKENS
-            </a>
-          </li>
-          <li class="engelbewaarder">
-            <a href="https://www.cafedeengelbewaarder.nl/home">CAFÉ DE ENGELBEWAARDER</a>
-          </li>
-        </ul>
+      <div class="flags" fxLayout fxLayoutGap="1rem">
+        <img
+          *ngIf="language === 'english'"
+          (click)="selectLanguage('dutch')"
+          fxLayoutAlign="end"
+          class="dutch-flag flag"
+          src="../../assets/images/flags/nl-flag.png"
+          alt="NL">
+        <img
+          *ngIf="language === 'dutch'"
+          (click)="selectLanguage('english')"
+          class="english-flag flag"
+          src="../../assets/images/flags/uk-flag.png"
+          alt="EN">
       </div>
     </div>
+
+
+    <div
+      class="content"
+      *ngIf="language === 'dutch'">
+      Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolor iure harum minus quam vel itaque facere delectus
+      quo laboriosam similique, quibusdam quas officiis, labore eligendi obcaecati? Illo quia eveniet libero iure
+      accusamus deserunt, quibusdam quod repellendus aliquid illum aspernatur nam? Assumenda vel possimus, quod
+      aspernatur porro amet optio? Iste odio dolores culpa, officia dolorum ab nihil. Corporis ad iusto nobis quas
+      soluta cumque excepturi deserunt quae accusamus nesciunt aliquam sit, reiciendis eaque mollitia esse molestias
+      velit perferendis a dolor facere voluptatem! Distinctio laudantium, aliquam labore commodi quo ipsa reiciendis
+      dolorem qui consequatur earum, voluptate dolorum quam numquam, voluptatem ipsam iusto.
+    </div>
+
+    <div
+      *ngIf="language === 'english'"
+      class="content">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate nobis dicta delectus dolor amet? Cum reiciendis
+      minima, ipsam aliquid praesentium rerum ipsa? Alias cupiditate dolorum similique odio ab neque, temporibus illum
+      laboriosam ad laborum tempore soluta quam quaerat atque magni, reiciendis nemo. Blanditiis maiores aliquid
+      voluptates laborum mollitia earum, tenetur qui alias eum facere ad illo beatae totam incidunt laudantium at!
+      Reiciendis, praesentium iusto temporibus amet odio a dignissimos molestias illum quos, adipisci optio similique
+      eveniet! Nesciunt corrupti ullam magni dicta sit consectetur soluta, qui sint amet, impedit ipsum accusantium ut
+      illo repudiandae dignissimos voluptates est dolores numquam asperiores velit iste, provident quidem similique.
+      Alias eius reprehenderit sit reiciendis a? Sequi a excepturi quos odio nobis quaerat hic tempora est voluptate
+      consequatur fugiat dolores ipsam minus temporibus ullam porro at eaque in, tempore nesciunt sunt? Minima sint,
+      earum beatae rerum, facere aperiam at voluptatum saepe itaque corrupti soluta excepturi vitae.
+    </div>
+
+
+
   </div>
 </div>

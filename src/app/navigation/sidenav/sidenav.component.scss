@@ -3,12 +3,14 @@
   border: 3px solid var(--jazz-orange);
 }
 mat-nav-list {
-  
-  a {
-      text-decoration: none;
-      font-size: 1.5rem;
-      color: var(--jazz-orange);
-      
+  .nav-list-item {
+    text-decoration: none;
+    font-size: 1.5rem;
+    color: var(--jazz-orange);
+    letter-spacing:2rem;
+    span {
+      letter-spacing:.5rem;
+    }
   }
   .filler {
     height: 100%;
@@ -16,13 +18,18 @@ mat-nav-list {
 }
 // .nav-list-item {
 // }
- .hr {
-   margin: 0px 0px 0px 15px;
-   /* margin: 0px; */
-   opacity: 0.1;
-   width: 80%
- }
-
-
-
-
+.hr {
+  margin: 0px 0px 0px 15px;
+  /* margin: 0px; */
+  opacity: 0.1;
+  width: 80%;
+}
+.spacing-1 {
+  letter-spacing:2rem;
+}
+.spacing-2 {
+  letter-spacing:2rem;
+}
+.a {
+  letter-spacing:2rem;
+}

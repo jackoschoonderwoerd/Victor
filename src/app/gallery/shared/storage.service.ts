@@ -26,6 +26,7 @@ export class StorageService {
   urlsObject: ImageUrls = {
     _200x200: '',
     _320x320: '',
+    _430x430: '',
     _640x640: '',
     _1440x1440: '',
     _original: ''
@@ -70,12 +71,13 @@ export class StorageService {
     
     const measurments: string[] = ['', '_200x200', '_640x640', '_1440x1440']
     const filepath_original = filename
-    const filepath_200x200 = filename.split('.')[0] + '_200x200' + '.' + filename.split('.')[1]
-    const filepath_320x320 = filename.split('.')[0] + '_320x320' + '.' + filename.split('.')[1]
-    const filepath_640x640 = filename.split('.')[0] + '_640x640' + '.' + filename.split('.')[1]
-    const filepath_1440x1440 = filename.split('.')[0] + '_1440x1440' + '.' + filename.split('.')[1]
+    const filepath_200x200 = filename.split('.')[0] + '_200x200' + '.' + filename.split('.')[1];
+    const filepath_320x320 = filename.split('.')[0] + '_320x320' + '.' + filename.split('.')[1];
+    const filepath_430x430 = filename.split('.')[0] + '_430x430' + '.' + filename.split('.')[1]
+    const filepath_640x640 = filename.split('.')[0] + '_640x640' + '.' + filename.split('.')[1];
+    const filepath_1440x1440 = filename.split('.')[0] + '_1440x1440' + '.' + filename.split('.')[1];
 
-    this.filePaths.push(filepath_original, filepath_200x200, filepath_320x320, filepath_640x640, filepath_1440x1440);
+    this.filePaths.push(filepath_original, filepath_200x200, filepath_320x320, filepath_430x430, filepath_640x640, filepath_1440x1440);
     console.log(this.filePaths);
     
 
@@ -116,6 +118,16 @@ export class StorageService {
         catchError(err => {
           console.log(err);
           this.keepTrying(10, filepath_320x320)
+          return throwError(err)
+        }),
+        concatMap(() => this.storage.ref(filepath_430x430).getDownloadURL()),
+        tap(imageUrl => {
+          this.urls.push(imageUrl)
+          this.urslLength();
+        }),
+        catchError(err => {
+          console.log(err);
+          this.keepTrying(10, filepath_430x430)
           return throwError(err)
         }),
         concatMap(() => this.storage.ref(filepath_640x640).getDownloadURL()),
@@ -166,12 +178,14 @@ export class StorageService {
   }
 
   private urslLength() {
-    if (this.urls.length === 5) {
+    if (this.urls.length === 6) {
       this.urls.forEach((url: string) => {
         if (url.includes('_200x200')) {
           this.urlsObject._200x200 = url
         } else if (url.includes('_320x320')) {
           this.urlsObject._320x320 = url;
+        } else if (url.includes('_430x430')) {
+          this.urlsObject._430x430 = url;
         } else if (url.includes('_640x640')) {
           this.urlsObject._640x640 = url;
         } else if (url.includes('_1440x1440')) {
@@ -186,6 +200,7 @@ export class StorageService {
         _original: null,
         _200x200: null,
         _320x320: null,
+        _430x430: null,
         _640x640: null,
         _1440x1440: null
       }

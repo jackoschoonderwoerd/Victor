@@ -19,6 +19,7 @@ const initialState: StorageState = {
     _original: null,
     _200x200: null,
     _320x320: null,
+    _430x430: null,
     _640x640: null,
     _1440x1440: null
   },

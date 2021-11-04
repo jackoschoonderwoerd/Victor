@@ -9,9 +9,10 @@ export interface ArtWork {
 }
 
 export interface ImageUrls {
-  _original: string,
-  _200x200: string,
-  _320x320: string
-  _640x640: string,
-  _1440x1440: string
+  _original: string;
+  _200x200: string;
+  _320x320: string;
+  _430x430: string;
+  _640x640: string;
+  _1440x1440: string;
 }

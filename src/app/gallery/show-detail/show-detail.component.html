@@ -1,0 +1,14 @@
+
+<fa-icon
+  mat-dialog-close
+  [ngClass]="windowCloseVisible ? 'visible' : 'invisible'" 
+  [icon]="faWindowClose" class="close-icon">
+</fa-icon>
+
+<div class="dialog-container" fxLayout="column">
+  <div 
+    class="image-container" (click)="onToggleCloseUp()">
+    <img [ngClass]="closeUp ? 'close-up' : 'image'" [src]="urls._original" alt="">
+  </div>
+  <!-- <button mat-raised-button >{{closeUp ? 'close-up' : 'full-size'}}</button> -->
+</div>

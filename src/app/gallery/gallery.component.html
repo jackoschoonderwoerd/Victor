@@ -1,26 +1,41 @@
-<div class="container" fxLayout fxLayoutAlign="center center">
+<div class="container" fxLayout fxLayoutAlign="center">
 
   <div *ngIf="imageSelected" class="selected-image-container">
     <img class="selected-image" (click)="imageSelected = false" [src]="selectedImageUrl" alt="">
   </div>
-  <ul class="artwork-list" *ngIf="!imageSelected" fxLayout="row">
-    <li class="artwork-list-item" *ngFor="let image of images$ | async" fxLayout="column">
+  <div class="artworks" *ngIf="!imageSelected">
+    <div class="artwork-item" *ngFor="let image of images$ | async">
       <div class="title">{{image.title}}</div>
-      <!-- <div class="caption">{{image.caption}}</div>
-      <div class="price">{{image.price | currency:"EUR"}}</div> -->
       <div class="size-buttons">
         <button mat-raised-button
-          (click)="selectedImageUrl = image.urls._640x640; imageSelected = true">640x640</button>
+          (click)="selectedImageUrl = image.urls._640x640; imageSelected = true">640</button>
         <button mat-raised-button
-          (click)="selectedImageUrl = image.urls._1440x1440; imageSelected = true">1440x1440</button>
+          (click)="selectedImageUrl = image.urls._1440x1440; imageSelected = true">1440</button>
         <button mat-raised-button
-          (click)="selectedImageUrl = image.urls._original; imageSelected = true">original</button>
+          (click)="selectedImageUrl = image.urls._original; imageSelected = true">orig</button>
       </div>
-      <div class="thumbnail-container">
-        <img class="thumbnail" [src]="image.urls._320x320" alt="">
+      <div
+        class="picture-container"
+        (click)="showDetail(image.urls)">
+        
+        <picture>
+          <source [srcset]="image.urls._430x430" media="(min-width: 428px)">
+          <source [srcset]="image.urls._320x320" media="(min-width: 320px)">
+          <img [ngStyle]="isMobile ? getHeight() : ''"  [src]="image.urls._200x200">
+        </picture>
       </div>
-      <div *ngIf="isAuth$ | async" class="">{{image.listPosition}}</div>
-      <div class="info-edit-delete-buttons" fxLayout="column" fxLayoutGap="0.5rem">
+      <!-- <div class="image-container">
+        <img [src]="image.urls._640x640" alt="">
+      </div> -->
+      <div class="info-edit-delete-buttons">
+        <div *ngIf="isAuth$ | async" class="list-position-container">
+          <div class="list-position-text">
+            list position
+          </div>
+          <div class="list-position">
+            {{image.listPosition}}
+          </div>
+        </div>
         <button
           mat-raised-button class="info" 
           (click)="onInfo(image)">
@@ -41,6 +56,6 @@
           delete
         </button>
       </div>
-    </li>
-  </ul>
+    </div>
+  </div>
 </div>

@@ -27,6 +27,7 @@ export class UploadImageComponent implements OnInit {
   urlsObject: ImageUrls = {
     _200x200: '',
     _320x320: '',
+    _430x430: '',
     _640x640: '',
     _1440x1440: '',
     _original: ''
@@ -134,6 +135,7 @@ export class UploadImageComponent implements OnInit {
         _original: this.completedUrls._original,
         _200x200: this.completedUrls._200x200,
         _320x320: this.completedUrls._320x320,
+        _430x430: this.completedUrls._430x430,
         _640x640: this.completedUrls._640x640,
         _1440x1440: this.completedUrls._1440x1440
       },
@@ -165,6 +167,7 @@ export class UploadImageComponent implements OnInit {
       _original: null,
       _200x200: null,
       _320x320: null,
+      _430x430: null,
       _640x640: null,
       _1440x1440: null
     };
