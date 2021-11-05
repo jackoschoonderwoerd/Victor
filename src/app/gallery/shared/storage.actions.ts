@@ -5,7 +5,7 @@ import { ImageUrls } from './models/artwork.model';
 
 
 export const FILEPATHS_URLS_COMPLETE = '[STORAGE] FilePaths And Urls complete';
-export const COMPLETED_200x200 = '[STORAGE] _200X200 Complete'
+// export const COMPLETED_200x200 = '[STORAGE] _200X200 Complete'
 // export const STOP_LOADING = '[UI] Stop Loading';
 
 
@@ -18,10 +18,10 @@ export class FilePathsAndUrlsComplete implements Action {
     public completedUrls: ImageUrls
     ) {}
 }
-export class Completed_200x200 implements Action {
-  readonly type = COMPLETED_200x200
-  constructor(public completed_200_200) {}
-}
+// export class Completed_200x200 implements Action {
+  // readonly type = COMPLETED_200x200
+  // constructor(public completed_200_200) {}
+// }
 
 export type StorageActions = FilePathsAndUrlsComplete
  

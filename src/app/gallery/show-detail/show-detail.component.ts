@@ -30,9 +30,10 @@ export class ShowDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.urls = this.data.urls;
-    console.log(this.urls);
-    this.dialogRef.updateSize('100vh', '100vh')
-    // console.log(this.data)
+    console.log(this.data);
+    this.dialogRef.updateSize(this.data.screenWidth + 'px', '50px')
+    this.dialogRef.updateSize(this.data.screenWidth + 'px', this.data.screenHeight + 'px')
+    
 
   }
   onToggleCloseUp() {

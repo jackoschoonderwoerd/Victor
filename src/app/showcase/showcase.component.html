@@ -1,0 +1,7 @@
+
+<div class="image-container" fxLayout fxLayoutAlign="center">
+  <img
+    class="image"
+    [src]="(imageUrls$ | async)._original" alt=""
+    (click)="closeShowcase()">
+</div>

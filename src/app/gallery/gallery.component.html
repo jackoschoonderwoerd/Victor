@@ -6,7 +6,7 @@
   <div class="artworks" *ngIf="!imageSelected">
     <div class="artwork-item" *ngFor="let image of images$ | async">
       <div class="title">{{image.title}}</div>
-      <div class="size-buttons">
+      <div class="size-buttons" *ngIf="isMobile">
         <button mat-raised-button
           (click)="selectedImageUrl = image.urls._640x640; imageSelected = true">640</button>
         <button mat-raised-button
@@ -16,7 +16,8 @@
       </div>
       <div
         class="picture-container"
-        (click)="showDetail(image.urls)">
+        (click)="activateShowcase(image.urls)"
+        fxLayout fxLayoutAlign="center">
         
         <picture>
           <source [srcset]="image.urls._430x430" media="(min-width: 428px)">

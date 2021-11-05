@@ -6,12 +6,13 @@ import { Observable } from 'rxjs';
 import { EditComponent } from './edit/edit.component';
 import { InfoComponent } from './info/info.component';
 import { DbService } from './shared/db.service';
-import { ArtWork } from './shared/models/artwork.model';
+import { ArtWork, ImageUrls } from './shared/models/artwork.model';
 import { StorageService } from './shared/storage.service';
 import { UiService } from './shared/ui.service';
 import * as fromRoot from './../app.reducer'
 import { Store } from '@ngrx/store';
 import { ShowDetailComponent } from './show-detail/show-detail.component';
+import * as SHOWCASE from './../showcase/showcase.actions'
 
 
 @Component({
@@ -70,18 +71,43 @@ export class GalleryComponent implements OnInit {
         title: artwork.title,
         caption: artwork.caption,
         price: artwork.price
-      }
+      },
+      
     })
   }
 
-  showDetail(urls: string[]) {
+  activateShowcase(urls: ImageUrls) {
+    if(!this.isMobile) {
+      console.log('activateShowcase()')
+      console.log(urls);
+      this.store.dispatch(new SHOWCASE.ShowcaseActive(urls))
+
+    } else {
+      console.log(this.selectedImageUrl = urls._1440x1440);
+      this.imageSelected = true;
+      this.selectedImageUrl = urls._1440x1440
+    }
+  }
+
+  showDetail(urls: ImageUrls) {
     if(!this.isMobile) {
       this.dialog.open(ShowDetailComponent, {
+        panelClass: 'custom-container',
         data: {
           urls: urls,
-          isMobile: this.isMobile
-        }, 
+          isMobile: this.isMobile,
+          screenWidth: this.screenWidth,
+          screenHeight: this.screenHeight
+        },
+        // maxWidth: this.screenWidth,
+        // maxHeight: this.screenHeight,
+        // width: this.screenWidth,
+        // height: this.screenHeight,
       })
+    } else {
+      console.log(this.selectedImageUrl = urls._1440x1440);
+      this.imageSelected = true;
+      this.selectedImageUrl = urls._1440x1440
     }
     return
   }
@@ -93,7 +119,8 @@ export class GalleryComponent implements OnInit {
         caption: artWork.caption,
         price: artWork.price,
         listPosition: artWork.listPosition
-      }
+      },
+      height: '100%'
     })
     dialogRef.afterClosed().subscribe(data => {
       console.log(data)

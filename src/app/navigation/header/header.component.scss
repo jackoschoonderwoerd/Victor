@@ -1,6 +1,6 @@
 mat-toolbar {
   .toolbar-content {}
-  background-color: var(--jazz-black);
+  background-color: var(--gray);
   color: var(--jazz-white);
   @media (max-width: 767px) {
     // background-color: var(--color-1);
@@ -38,7 +38,7 @@ mat-toolbar {
     .list-container {
       .menu-list {
         li {
-          color: var(--jazz-orange);
+          color: var(--yellow);
           letter-spacing: 5px;
           a { 
             letter-spacing: 5px;

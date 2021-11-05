@@ -5,8 +5,9 @@
     <app-sidenav (closeSidenav)="sidenav.close()"></app-sidenav>
   </mat-sidenav>
   <mat-sidenav-content>
-    <app-header (sidenavToggle)="sidenav.toggle()"></app-header>
-    <main>
+    <app-showcase *ngIf="isShowcaseActive$ | async"></app-showcase>
+    <app-header *ngIf="!(isShowcaseActive$ | async)" (sidenavToggle)="sidenav.toggle()"></app-header>
+    <main *ngIf="!(isShowcaseActive$ | async)">
       <router-outlet></router-outlet>
       <app-footer></app-footer>
     </main>

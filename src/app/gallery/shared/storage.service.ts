@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AngularFireStorage, createStorageRef } from '@angular/fire/storage';
+import { AngularFireStorage } from '@angular/fire/storage';
 
 import { throwError } from 'rxjs';
 import { catchError, concatMap, last, tap } from 'rxjs/operators';
@@ -9,8 +9,7 @@ import { Store } from '@ngrx/store';
 import { ImageUrls } from './models/artwork.model';
 import firebase from 'firebase/app';
 import { MatDialog } from '@angular/material/dialog';
-import { ConfirmOverwriteComponent } from '../upload-image/confirm-overwrite/confirm-overwrite.component';
-import { FormattedMessageChain } from '@angular/compiler';
+
 
 
 
@@ -35,7 +34,6 @@ export class StorageService {
 
   constructor(
     private storage: AngularFireStorage,
-    private dialog: MatDialog,
     private store: Store<fromStore.StorageState>
   ) { }
 
@@ -69,7 +67,7 @@ export class StorageService {
     this.filePaths = [];
     console.log(this.filePaths);
     
-    const measurments: string[] = ['', '_200x200', '_640x640', '_1440x1440']
+    
     const filepath_original = filename
     const filepath_200x200 = filename.split('.')[0] + '_200x200' + '.' + filename.split('.')[1];
     const filepath_320x320 = filename.split('.')[0] + '_320x320' + '.' + filename.split('.')[1];
