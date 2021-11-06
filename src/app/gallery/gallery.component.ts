@@ -11,8 +11,14 @@ import { StorageService } from './shared/storage.service';
 import { UiService } from './shared/ui.service';
 import * as fromRoot from './../app.reducer'
 import { Store } from '@ngrx/store';
-import { ShowDetailComponent } from './show-detail/show-detail.component';
-import * as SHOWCASE from './../showcase/showcase.actions'
+;
+import * as SHOWCASE from './../showcase/showcase.actions';
+
+import { faEdit } from '@fortawesome/free-solid-svg-icons';
+import { faInfo } from '@fortawesome/free-solid-svg-icons';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import { ConfirmDeleteComponent } from '../shared/confirm-delete/confirm-delete.component';
 
 
 @Component({
@@ -22,7 +28,7 @@ import * as SHOWCASE from './../showcase/showcase.actions'
 })
 export class GalleryComponent implements OnInit {
 
-  
+
   images$: Observable<any>
   selectedImageUrl: string;
   imageSelected: boolean = false;
@@ -30,17 +36,21 @@ export class GalleryComponent implements OnInit {
   public screenWidth: any;
   public screenHeight: any;
   isMobile: boolean = true;
+  faEdit = faEdit;
+  faInfo = faInfo;
+  faPlus = faPlus;
+  faTrash = faTrash;
 
   @HostListener('window:resize', ['$event'])
   onResize(event?) {
     console.log('resizing');
     this.screenHeight = window.innerHeight;
     this.screenWidth = window.innerWidth;
-    if(this.screenWidth > 428) {
+    if (this.screenWidth > 428) {
       this.isMobile = false;
     }
   }
-  
+
   constructor(
     private store: Store<fromRoot.GlobalState>,
     private dbService: DbService,
@@ -55,16 +65,17 @@ export class GalleryComponent implements OnInit {
     // console.log('WIDTH: ', window.innerWidth)
     this.screenWidth = window.innerWidth;
     this.screenHeight = window.innerHeight;
-    if(this.screenWidth > 428) {
+    if (this.screenWidth > 428) {
       this.isMobile = false;
     }
-    
+
     this.store.subscribe(data => console.log(data));
     this.images$ = this.dbService.getImages();
     this.dbService.getImages();
     this.isAuth$ = this.store.select(fromRoot.getIsAuth)
   }
-  onInfo(artwork: ArtWork) {
+  onInfo(e: Event, artwork: ArtWork) {
+    e.stopPropagation();
     console.log(artwork);
     this.dialog.open(InfoComponent, {
       data: {
@@ -72,44 +83,17 @@ export class GalleryComponent implements OnInit {
         caption: artwork.caption,
         price: artwork.price
       },
-      
+      minWidth: '320px'
+
     })
   }
 
   activateShowcase(urls: ImageUrls) {
-    if(!this.isMobile) {
+    if (!this.isMobile) {
       console.log('activateShowcase()')
       console.log(urls);
       this.store.dispatch(new SHOWCASE.ShowcaseActive(urls))
-
-    } else {
-      console.log(this.selectedImageUrl = urls._1440x1440);
-      this.imageSelected = true;
-      this.selectedImageUrl = urls._1440x1440
     }
-  }
-
-  showDetail(urls: ImageUrls) {
-    if(!this.isMobile) {
-      this.dialog.open(ShowDetailComponent, {
-        panelClass: 'custom-container',
-        data: {
-          urls: urls,
-          isMobile: this.isMobile,
-          screenWidth: this.screenWidth,
-          screenHeight: this.screenHeight
-        },
-        // maxWidth: this.screenWidth,
-        // maxHeight: this.screenHeight,
-        // width: this.screenWidth,
-        // height: this.screenHeight,
-      })
-    } else {
-      console.log(this.selectedImageUrl = urls._1440x1440);
-      this.imageSelected = true;
-      this.selectedImageUrl = urls._1440x1440
-    }
-    return
   }
 
   onEdit(artWork: ArtWork) {
@@ -120,7 +104,7 @@ export class GalleryComponent implements OnInit {
         price: artWork.price,
         listPosition: artWork.listPosition
       },
-      height: '100%'
+      minWidth: '320px',
     })
     dialogRef.afterClosed().subscribe(data => {
       console.log(data)
@@ -142,21 +126,30 @@ export class GalleryComponent implements OnInit {
     })
     console.log(artWork)
   }
-  onDelete(artwork: ArtWork) {
-    console.log(artwork)
-    // DELETE FROM DB
 
-    this.dbService.deleteImageDataFromDb(artwork.id)
-      .then(res => {
-        console.log(res);
-        this.uiService.showSnackBar('imagedata deleted from db', null, 5000)
-        this.storageService.deleteFromStorage(artwork.filepaths)
+  onDelete(artwork: ArtWork) {
+    const dialogRef = this.dialog.open(ConfirmDeleteComponent, {
+      data: {
+        message: 'This will permanently remove the image-file and all of it\'s information from the database'
+      },
+      width: '320px'
+    });
+    dialogRef.afterClosed().subscribe(res => {
+      if(res) {
+        this.dbService.deleteImageDataFromDb(artwork.id)
           .then(res => {
-            this.uiService.showSnackBar('filepaths deleted from storage', null, 5000)
+            console.log(res);
+            this.uiService.showSnackBar('imagedata deleted from db', null, 5000)
+            this.storageService.deleteFromStorage(artwork.filepaths)
+              .then(res => {
+                this.uiService.showSnackBar('filepaths deleted from storage', null, 5000)
+              })
+              .catch(err => console.log(err))
           })
-          .catch(err => console.log(err))
-      })
-      .catch(err => console.log(err));
+          .catch(err => console.log(err));
+      }
+      return;
+    });
   }
 
   // ========= DYNAMIC CSS ============
@@ -164,7 +157,7 @@ export class GalleryComponent implements OnInit {
   getHeight() {
     console.log(this.screenWidth);
     return {
-      height : this.screenWidth + 'px'
+      height: this.screenWidth + 'px'
     }
   }
 

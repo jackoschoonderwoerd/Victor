@@ -2,8 +2,9 @@ import { Injectable } from '@angular/core';
 
 import { AngularFirestore } from '@angular/fire/firestore';
 import { first, map } from 'rxjs/operators';
-import { Observable } from 'rxjs';
+import { Observable, pipe } from 'rxjs';
 import { ArtWork } from './models/artwork.model';
+
 
 @Injectable({
   providedIn: 'root'
@@ -30,7 +31,28 @@ export class DbService {
     return this.db.doc(`victor/${artWork.id}`).update(artWork)
   }
 
-
+  deleteDocumentByFilePath(filePath: string) {
+    console.log(filePath);
+    const documentRef = this.db.collection('victor')
+    const doomedDocument = this.db.collection('victor', ref => ref.where('originalFilePath', '==', filePath))
+    doomedDocument
+    .snapshotChanges()
+    .pipe(
+      map(docArray => {
+        return docArray.map((doc: any) => {
+          return {
+            id: doc.payload.doc.id
+          }
+        })
+      })
+    ).subscribe((idObject: any) => {
+      console.log(idObject);
+      if(idObject.length !== 0) {
+        const id = (idObject[0].id);
+        this.db.collection('victor').doc(id).delete();
+      }
+    })
+  }
 
   getImages(): Observable<any> {
     return this.db.collection('victor', ref => ref.orderBy('listPosition'))
@@ -63,12 +85,27 @@ export class DbService {
       .snapshotChanges()
       .pipe(
         map(docArray => {
-          console.log(docArray)
           return docArray.map((doc: any) => {
             console.log(doc.payload.doc.data().title)
           })
         })
       ).subscribe(data => console.log(data))
-
   }
+
+  getAllfilepaths() {
+    const allFilepaths: string[] = []
+    return this.db.collection('victor')
+      .snapshotChanges()
+      .pipe(
+        map(docArray => {
+          docArray.map((doc: any) => {
+            doc.payload.doc.data().filepaths.forEach((path: string) => {
+              allFilepaths.push(path)
+            })
+            
+          })
+          return allFilepaths;
+        })
+      )
+  } 
 }

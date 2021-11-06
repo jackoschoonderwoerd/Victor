@@ -1,14 +1,16 @@
 import { Injectable } from '@angular/core';
-import { AngularFireStorage } from '@angular/fire/storage';
+import { AngularFireStorage, AngularFireStorageReference} from '@angular/fire/storage';
 
 import { throwError } from 'rxjs';
 import { catchError, concatMap, last, tap } from 'rxjs/operators';
-import * as fromStore from './storage.reducer'
+import * as fromStorage from './storage.reducer'
 import * as STORAGE from './storage.actions'
 import { Store } from '@ngrx/store';
 import { ImageUrls } from './models/artwork.model';
 import firebase from 'firebase/app';
 import { MatDialog } from '@angular/material/dialog';
+import { DbService } from './db.service';
+import { UIService } from 'src/app/shared/ui.service';
 
 
 
@@ -31,14 +33,16 @@ export class StorageService {
     _original: ''
   }
   filePaths: string[] = [];
+  storageRef: AngularFireStorageReference;
 
   constructor(
     private storage: AngularFireStorage,
-    private store: Store<fromStore.StorageState>
+    private store: Store<fromStorage.StorageState>,
+    private dbService: DbService,
+    private uiService: UIService
   ) { }
 
-  deleteFromStorage = async(filepaths: string[]) => {
-    
+  deleteFromStorage = async(filepaths: string[]) => {  
     console.log(filepaths);
     const response = await filepaths.forEach((path: string) => {
       console.log(path);
@@ -48,6 +52,7 @@ export class StorageService {
     })
     return response
   }
+
 
   checkForExistingStorageName = async (filename) => {
     const response = await this.getStoredFilenames().then((storagenames: string[]) => {
@@ -155,6 +160,8 @@ export class StorageService {
   private keepTrying(triesRemaining, filePath) {
 
     if (triesRemaining < 0) {
+      console.log(triesRemaining);
+      this.store.dispatch(new STORAGE.UploadFailed);
       return Promise.reject('out of tries')
     }
     const storageRef = this.storage.storage.ref().child(filePath);
@@ -221,12 +228,51 @@ export class StorageService {
       .catch(err => console.log(err));
   }
 
-  // createFilepaths(filename) {
-  //   const measurments: string[] = ['']
-  //   const filepath_original = filename
-  //   const filepath_200x200 = filename.split('.')[0] + '_200x200' + '.' + filename.split('.')[1]
-  //   const filepath_320x320 = filename.split('.')[0] + '_320x320' + '.' + filename.split('.')[1]
-  //   const filepath_640x640 = filename.split('.')[0] + '_640x640' + '.' + filename.split('.')[1]
-  //   const filepath_1440x1440 = filename.split('.')[0] + '_1440x1440' + '.' + filename.split('.')[1]
-  // }
+  cleanupStorage() {
+    const storagenames = [];
+    const doomedStoragenames: string[] = []
+    // 1 GET ALL THE FILEPATHS FROM STORAGE
+    const storageRef = firebase.storage().ref()
+    const listRef = storageRef.child('');
+    
+    return listRef.listAll()
+      .then((res) => {
+        res.items.forEach(item => {
+          storagenames.push(item.name)
+        })
+        // 2 GET ALL THE FILEPATHS FORM DB
+        this.dbService.getAllfilepaths().subscribe((filepaths: string[]) => {
+          console.log(filepaths, storagenames)
+          storagenames.forEach(storagename => {
+            const index = filepaths.findIndex((filepath) => {
+              return storagename === filepath
+            })
+            if(index === -1) {
+              console.log(storagename);
+              doomedStoragenames.push(storagename)
+              console.log(doomedStoragenames);
+              // delete storagename
+              // this.deleteFromStorage(storagename)
+              //   .then(res => {
+              //     console.log(res);
+              //   })
+              //   .catch(err => console.log(err));
+            }
+            else console.log(index);
+          })
+          this.deleteFromStorage(doomedStoragenames)
+            .then(res => {
+              console.log(res);
+              this.uiService.showSnackbar('storage cleaned up', null, 5000);
+            })
+            .catch(err => console.log(err));
+        });
+      }) 
+
+
+
+    
+
+    // 3 IF FILEPATH FROM STORAGE NOT IN DB; DELETE FROM STORAGE
+  }
 }

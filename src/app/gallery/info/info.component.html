@@ -1,14 +1,16 @@
-<div class="container" mat-dialog-close>
-  
+<div class="container" mat-dialog-close fxLayout="column" fxLayoutGap="1rem">
   <div class="title">
-    {{data.title}}
+    Title: {{data.title}}
   </div>
   <div class="caption">
-    {{data.caption}}
+    Description: {{data.caption}}
   </div>
   <div class="price">
+    Price:
     {{data.price | currency:"EUR"}}
   </div>
-  <fa-icon 
-     [icon]="faWindowClose" class="close-icon"></fa-icon>
+  <div class="icon" fxLayout fxLayoutAlign="end">
+    <fa-icon [icon]="faWindowClose" class="close-icon"></fa-icon>
+  </div>
 </div>
+

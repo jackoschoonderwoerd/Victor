@@ -10,7 +10,7 @@ import { UploadImageComponent } from './upload-image/upload-image.component';
 
 const routes: Routes = [
   { path: '', component: GalleryComponent },
-  { path: 'upload-image', component: UploadImageComponent }
+  { path: 'upload-image', component: UploadImageComponent, canActivate: [AuthGuard] }
   // { path: 'create-artist', component: CreateArtistComponent, canActivate: [AuthGuard] }
 ];
 

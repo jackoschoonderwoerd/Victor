@@ -3,6 +3,7 @@ export interface ArtWork {
   caption: string;
   price: number;
   urls: ImageUrls;
+  originalFilePath: string;
   filepaths: string[];
   listPosition: number;
   id?: string;

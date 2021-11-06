@@ -13,6 +13,7 @@ import { ArtWork, ImageUrls } from '../shared/models/artwork.model';
 import { UiService } from '../shared/ui.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmOverwriteComponent } from './confirm-overwrite/confirm-overwrite.component';
+import { ConfirmDeleteComponent } from 'src/app/shared/confirm-delete/confirm-delete.component';
 
 
 
@@ -54,13 +55,20 @@ export class UploadImageComponent implements OnInit {
     private uiService: UiService,
     private dialog: MatDialog,
     
+    
   ) { }
 
   ngOnInit(): void {
+    
     // this.mainFunction()
     // this.previewUrl_200x200$ = this.store.select(fromRoot.getCompletedUrls)
     this.store.subscribe(storeData => {
-      console.log(storeData.storage.completedUrls)
+      console.log(storeData.storage.uploadFailed)
+      if(storeData.storage.uploadFailed) {
+        alert('upload failed')
+        this.clearFormsAndFileInput();
+        this.uiService.showSnackBar('upload failed; try again', null, 5000)
+      }
       this.completedUrls = storeData.storage.completedUrls;
       if(this.completedUrls._original !== null) {
         this.fileSelected = true;
@@ -72,6 +80,7 @@ export class UploadImageComponent implements OnInit {
     this.initCheckTitleAvailable();
     this.initImageDataForm();
     this.clearFormsAndFileInput();
+    this.storageService.cleanupStorage()
   }
 
   initCheckTitleAvailable () {
@@ -104,7 +113,9 @@ export class UploadImageComponent implements OnInit {
         console.log(res)
         if(res !== -1) {
           console.log('existing file')
-          const dialogRef = this.dialog.open(ConfirmOverwriteComponent)
+          const dialogRef = this.dialog.open(ConfirmOverwriteComponent, {
+            width: '320px;'
+          })
           dialogRef.afterClosed().subscribe(res => {
             if(res) {
               console.log('proceed form dialog')
@@ -124,6 +135,8 @@ export class UploadImageComponent implements OnInit {
   }
 
   onStoreImageDataInDb() {
+    console.log(this.filepaths[0]);
+    // const index = this.filepaths.findIndex()
     console.log(this.imageDataForm.value);
     const imageDataFormValue = this.imageDataForm.value
     const artwork: ArtWork = {
@@ -131,6 +144,7 @@ export class UploadImageComponent implements OnInit {
       caption: imageDataFormValue.caption,
       price: imageDataFormValue.price,
       listPosition: imageDataFormValue.listPosition,
+      originalFilePath: this.filepaths[0],
       urls: {
         _original: this.completedUrls._original,
         _200x200: this.completedUrls._200x200,
@@ -153,15 +167,21 @@ export class UploadImageComponent implements OnInit {
       this.uiService.showSnackBar('artwork NOT uploaded', null, 5000);
     });
   }
+
   clearFormsAndFileInput() {
     // console.log(this.fileInput.nativeElement.value)
     this.checkTitleAvailableForm.reset();
     this.imageDataForm.reset();
-    
-    if(!this.fileInput === undefined) {
 
-      this.fileInput.nativeElement.value = '';
+    console.log(this.fileInput);
+    if(this.fileInput !== undefined) {
+      this.fileInput.nativeElement.value = null
     }
+    // if(!this.fileInput === undefined) {
+
+    //   this.fileInput.nativeElement.files[0] = null;
+    // }
+    // console.log(this.fileInput.nativeElement.files.length);
     
     this.completedUrls = {
       _original: null,
@@ -172,5 +192,22 @@ export class UploadImageComponent implements OnInit {
       _1440x1440: null
     };
     this.retrievingData = false;
+  }
+
+  onCancel() {
+    const dialogRef = this.dialog.open(ConfirmDeleteComponent, {
+      data: {
+      message: 'The selected image file will be removed from the bucket. If you previously chose to overwrite an existing image file, this file will not be restored.'
+      },
+      width: '320px'
+    })
+    dialogRef.afterClosed().subscribe(res => {
+      if(res) {
+        this.clearFormsAndFileInput();
+        this.storageService.deleteFromStorage(this.filepaths);
+        this.dbService.deleteDocumentByFilePath(this.filepaths[0])
+      }
+      return;
+    })
   }
 }

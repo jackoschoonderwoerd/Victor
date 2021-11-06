@@ -34,6 +34,7 @@ export const getIsAdmin = createSelector(getAuthState, fromAuth.getIsAdmin);
 
 export const getStorageState = createFeatureSelector<fromStorage.StorageState>('storage');
 export const getCompletedUrls = createSelector(getStorageState, fromStorage.getCompletedUrls)
+export const getUploadStatus = createSelector(getStorageState, fromStorage.getUploadFailed)
 
 export const getShowcaseState = createFeatureSelector<fromShowcase.ShowcaseState>('showcase');
 export const getIsShowcaseActive = createSelector(getShowcaseState, fromShowcase.getIsShowcaseActive);

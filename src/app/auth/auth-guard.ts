@@ -22,19 +22,23 @@ export class AuthGuard implements CanLoad, CanActivate {
   // ? pipe allows the usage of multiple operators on a given observable
   // ? take(1) only takes the first value and closes down afterwards
 
-  canLoad(route: Route) {
-    return this.store.select(fromRoot.getIsAuth).pipe(take(1));
-  }
-
   // canLoad(route: Route) {
-  //   this.isAuthenticated$ = this.store.select(fromRoot.getIsAuth);
-  //   if (this.store.select(fromRoot.getIsAuth).pipe(take(1))) {
-  //     console.log('canload access granted');
-  //     return true
-  //   }
-  //   console.log('canload access denied');
-  //   return false
+  //   return this.store.select(fromRoot.getIsAuth).pipe(take(1));
   // }
+
+
+
+
+
+  canLoad(route: Route) {
+    // this.isAuthenticated$ = this.store.select(fromRoot.getIsAuth);
+    if (this.store.select(fromRoot.getIsAuth).pipe(take(1))) {
+      console.log('canload() access granted');
+      return true
+    }
+    console.log('canload() access denied');
+    return false
+  }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     console.log(this.store.select(fromRoot.getIsAuth).pipe(take(1)))

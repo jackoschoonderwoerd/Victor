@@ -1,9 +1,23 @@
 .container {
-
   padding-top: 2rem;
-  .checkTitleAvailableForm, .imageDataForm {
-    border: 2px solid black;
-    border-radius: 2px;
-    padding: 1rem
+  .form-container {
+    width: 320px;
+    .preview {
+      border: 1px solid black;
+      margin: auto;
+    }
+    .spinner-container {
+
+    }
+    .input {
+
+    }
+    .imageDataForm {
+      border: 2px solid black;
+      border-radius: 2px;
+      padding: 1rem
+    }
   }
+
+  
 }

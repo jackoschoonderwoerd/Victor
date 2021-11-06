@@ -2,7 +2,9 @@ import { ImageUrls } from './models/artwork.model';
 import {
   StorageActions,
   FILEPATHS_URLS_COMPLETE,
-  FilePathsAndUrlsComplete
+  FilePathsAndUrlsComplete,
+  UPLOAD_FAILED,
+  UploadFailed
 } from './storage.actions';
 
 // import { Url } from './storage.service';
@@ -11,7 +13,7 @@ export interface StorageState {
   completedUrls: ImageUrls | undefined,
   _200x200: string
   filePaths: string[]
-  
+  uploadFailed: boolean
 }
 
 const initialState: StorageState = {
@@ -24,7 +26,8 @@ const initialState: StorageState = {
     _1440x1440: null
   },
   _200x200: '',
-  filePaths: []
+  filePaths: [],
+  uploadFailed: false
 }
 
 export function storageReducer(state = initialState, action: StorageActions) {
@@ -37,7 +40,12 @@ export function storageReducer(state = initialState, action: StorageActions) {
         completedUrls: action.completedUrls,
         filePaths: action.filePaths
       }
-    
+    case UPLOAD_FAILED: {
+      return {
+        ...state,
+        uploadFailed: true 
+      }
+    }
     default: 
       return {
         ...state
@@ -46,3 +54,4 @@ export function storageReducer(state = initialState, action: StorageActions) {
 }
 
 export const getCompletedUrls = (state: StorageState) => state.completedUrls;
+export const getUploadFailed = (state: StorageState) => state.uploadFailed;

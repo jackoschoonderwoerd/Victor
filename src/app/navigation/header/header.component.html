@@ -15,35 +15,36 @@
         (click)="onToggleSidenav()">
       </fa-icon>
       <div class="filler"></div>
-
-        <img
-          class="logo" src="./../../../assets/icons/icon-72x72.png"
-          alt=""
-          (click)="onLogo()">
+      
+      <img
+      class="logo" src="./../../../assets/icons/icon-72x72.png"
+      alt=""
+      (click)="onLogo()">
     </div>
-
-    <!-- <div class="spacer" fxFlex></div> -->
-
     <div
-      class="toolbar-right" 
-      fxLayout
-      fxHide.lt-md
-      fxLayoutAlign="center center">
-
-      <img class="logo-right" src="./../../../assets/icons/icon-72x72.png" alt="">
-      <div class="filler-right"></div>
+    class="toolbar-right" 
+    fxLayout
+    fxHide.lt-md
+    fxLayoutAlign="center center">
+    
+    <img class="logo-right" src="./../../../assets/icons/icon-72x72.png" alt="">
+    <div class="vdb">VICTOR DE BOO GRAPHIC ART</div>
+    <div class="filler-right"></div>
 
       <div class="list-container" fxLayout fxLayoutAlign="center center" >
         <ul class="menu-list" fxLayout fxLayoutGap="15px">
           <li><a routerLinkActive="active-link" routerLink="/home">HOME</a></li>
-          <li *ngIf="(userEmail$ | async)">USER: {{ userEmail$ | async}}</li>
+          <!-- <li *ngIf="(userEmail$ | async)">USER: {{ userEmail$ | async}}</li> -->
           <li *ngIf="(isAdmin$ | async)">ADMIN: {{ isAdmin$ | async}}</li>
 
-          <li ><a routerLinkActive="active" routerLink="/gallery">gallery</a></li>
-          <li *ngIf="isAuth$ | async" ><a routerLinkActive="active" routerLink="/gallery/upload-image">upload</a></li>
+          <li><a 
+            routerLinkActive="active-link"
+            [routerLinkActiveOptions]="{exact: true}"
+            routerLink="/gallery">gallery</a></li>
+          <li *ngIf="isAuth$ | async" ><a routerLinkActive="active-link" routerLink="/gallery/upload-image">upload</a></li>
           <li *ngIf="!(isAuth$ | async)" ><a routerLinkActive="active-link" routerLink="auth/login">LOGIN</a></li>
           <!-- <li *ngIf="!(isAuth$ | async)" ><a routerLinkActive="active-link" routerLink="/signup">SIGN UP</a></li> -->
-          <li *ngIf="(isAuth$ | async)" (click)="onLogOut()">LOG OUT</li>
+          <li *ngIf="(isAuth$ | async)" (click)="onLogOut()" style="cursor: pointer;">LOG OUT</li>
         </ul>
       </div>
     </div>
