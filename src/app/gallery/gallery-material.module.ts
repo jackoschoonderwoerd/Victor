@@ -13,7 +13,8 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatDialogModule } from "@angular/material/dialog";
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 import { MatSnackBarModule } from "@angular/material/snack-bar";
-
+import { MatRadioModule } from '@angular/material/radio';
+import { MatListModule } from '@angular/material/list'; 
 
 
 
@@ -26,8 +27,8 @@ import { MatSnackBarModule } from "@angular/material/snack-bar";
     MatButtonModule,
     MatProgressSpinnerModule,
     MatSnackBarModule,
-
-
+    MatRadioModule,
+    MatListModule,
     MatCheckboxModule,
 
     MatIconModule,
@@ -42,7 +43,8 @@ import { MatSnackBarModule } from "@angular/material/snack-bar";
     MatButtonModule,
     MatProgressSpinnerModule,
     MatSnackBarModule,
-
+    MatRadioModule,
+    MatListModule,
     MatCheckboxModule,
 
     MatIconModule,

@@ -1,13 +1,28 @@
 <div class="container" mat-dialog-close fxLayout="column" fxLayoutGap="1rem">
   <div class="title">
-    Title: {{data.title}}
+    Title: {{artwork.title}}
+  </div>
+  <div class="year-created">
+    Year created: {{artwork.yearCreated}}
+  </div>
+  <div class="width">
+    Width: {{artwork.width}} cm.
+  </div>
+  <div class="height">
+    Height: {{artwork.height}} cm.
+  </div>
+  <div class="medium">
+    Medium: {{artwork.medium}}
+  </div>
+  <div class="bearer">
+    Bearer: {{artwork.bearer}}
   </div>
   <div class="caption">
-    Description: {{data.caption}}
+    Description: {{artwork.caption}}
   </div>
   <div class="price">
     Price:
-    {{data.price | currency:"EUR"}}
+    {{artwork.price | currency:"EUR"}}
   </div>
   <div class="icon" fxLayout fxLayoutAlign="end">
     <fa-icon [icon]="faWindowClose" class="close-icon"></fa-icon>

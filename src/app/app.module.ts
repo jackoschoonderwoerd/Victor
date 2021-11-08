@@ -27,6 +27,7 @@ import { AppMaterialModule } from './app-material.module';
 import { DateSuffix } from './shared/date-suffix.pipe';
 import { ConfirmDeleteComponent } from './shared/confirm-delete/confirm-delete.component';
 import { ShowcaseComponent } from './showcase/showcase.component';
+import { EventsComponent } from './events/events.component';
 
 
 
@@ -44,6 +45,7 @@ import { ShowcaseComponent } from './showcase/showcase.component';
     FooterComponent,
     ConfirmDeleteComponent,
     ShowcaseComponent,
+    EventsComponent,
 
     
     

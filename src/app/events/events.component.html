@@ -1,0 +1,58 @@
+<div class="section" fxLayout fxLayoutAlign="center">
+  <div class="main">
+
+    <div class="title-flags" fxLayout fxLayoutAlign="space-between">
+      <div class="title">
+        victor de boo
+      </div>
+      <div class="flags" fxLayout fxLayoutGap="1rem">
+        <img
+          *ngIf="language === 'english'"
+          (click)="selectLanguage('dutch')"
+          fxLayoutAlign="end"
+          class="dutch-flag flag"
+          src="../../assets/images/flags/nl-flag.png"
+          alt="NL">
+        <img
+          *ngIf="language === 'dutch'"
+          (click)="selectLanguage('english')"
+          class="english-flag flag"
+          src="../../assets/images/flags/uk-flag.png"
+          alt="EN">
+      </div>
+    </div>
+    <div class="header">drummer & graphic artist </div>
+    <div class="venue-header">Past events:</div>
+    <ul class="events-list">
+      <li *ngFor="let pastEvent of pastEvents" class="events-list-item">
+        <div class="period">
+          From: {{pastEvent.startDate | date:'fullDate'}} Until {{pastEvent.endDate | date:'fullDate'}}
+        </div>
+        <div class="venue">
+          At: {{pastEvent.location.venue}}
+        </div>
+        <div class="address">
+          Address: {{pastEvent.location.street}}, {{pastEvent.location.city}}
+        </div>
+        <div class="phone">Phone: {{pastEvent.location.phone}}</div>
+        
+      </li>
+    </ul>
+    <div class="venue-header">Future events:</div>
+    <ul class="events-list">
+      <li *ngFor="let pastEvent of pastEvents" class="events-list-item">
+        <div class="period">
+          From: {{pastEvent.startDate | date:'fullDate'}} Until {{pastEvent.endDate | date:'fullDate'}}
+        </div>
+        <div class="venue">
+          At: {{pastEvent.location.venue}}
+        </div>
+        <div class="address">
+          Address: {{pastEvent.location.street}}, {{pastEvent.location.city}}
+        </div>
+        <div class="phone">Phone: {{pastEvent.location.phone}}</div>
+        
+      </li>
+    </ul>
+  </div>
+</div>

@@ -44,6 +44,8 @@ export class UploadImageComponent implements OnInit {
   filepaths: string[];
   fileSelected: boolean = false 
   @ViewChild('fileInput') public fileInput: ElementRef
+  bearers: string[] = ['canvas', 'paper', 'other']
+  mediums: string[] =['photo', 'print', 'oil', 'acrylic', 'ink', 'graphite', 'other']
   
   myPreview: string = 'https://firebasestorage.googleapis.com/v0/b/photo-gallery-d40b0.appspot.com/o/9-images_200x200.jpg?alt=media&token=4ac7c17d-0656-434f-a1b0-2bcb1960fbaa'
   
@@ -79,7 +81,7 @@ export class UploadImageComponent implements OnInit {
     });
     this.initCheckTitleAvailable();
     this.initImageDataForm();
-    this.clearFormsAndFileInput();
+    // this.clearFormsAndFileInput();
     this.storageService.cleanupStorage()
   }
 
@@ -94,9 +96,14 @@ export class UploadImageComponent implements OnInit {
   initImageDataForm() {
     this.imageDataForm = this.fb.group({
       title: new FormControl('title 01', Validators.required),
+      yearCreated: new FormControl(1999, Validators.required),
+      width: new FormControl(100, Validators.required),
+      height: new FormControl(150, Validators. required),
+      bearer: new FormControl('', Validators.required),
+      medium: new FormControl(''),
       caption: new FormControl('caption 01', Validators.required),
       price: new FormControl(25, Validators.required),
-      listPosition: new FormControl(null, Validators.required)
+      listPosition: new FormControl(1, Validators.required)
     })
   }
   // onCheckTitleAvailable() {
@@ -141,6 +148,11 @@ export class UploadImageComponent implements OnInit {
     const imageDataFormValue = this.imageDataForm.value
     const artwork: ArtWork = {
       title: imageDataFormValue.title,
+      yearCreated: imageDataFormValue.yearCreated,
+      width: imageDataFormValue.width,
+      height: imageDataFormValue.height,
+      bearer: imageDataFormValue.bearer,
+      medium: imageDataFormValue.medium,
       caption: imageDataFormValue.caption,
       price: imageDataFormValue.price,
       listPosition: imageDataFormValue.listPosition,

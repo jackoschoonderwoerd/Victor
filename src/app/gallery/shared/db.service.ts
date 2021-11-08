@@ -64,6 +64,11 @@ export class DbService {
           return {
             id: doc.payload.doc.id,
             title: doc.payload.doc.data().title,
+            yearCreated: doc.payload.doc.data().yearCreated,
+            width: doc.payload.doc.data().width,
+            height: doc.payload.doc.data().height,
+            bearer: doc.payload.doc.data().bearer,
+            medium: doc.payload.doc.data().medium,
             caption: doc.payload.doc.data().caption,
             price: doc.payload.doc.data().price,
             listPosition: doc.payload.doc.data().listPosition,

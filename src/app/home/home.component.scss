@@ -1,38 +1,66 @@
-
 .section {
-  // border: 3px solid red;
+  
+  max-width: 100vw;
   .main {
-    padding: 1rem;
-    // border: 3px solid yellow;
-    max-width: 450px;
-    .title-flags {
-      .title {
-        font-size: 2rem;
-        font-weight: bold;
-        letter-spacing: .3rem;
+    max-width: 480px;
+    .name {
+      
+      font-size: 2rem;
+      font-weight: bold;
+      letter-spacing: 0.3rem;
+      text-transform: uppercase;
+      padding: 0rem;
+      @media (max-width: 500px) {
+        padding: 0 1rem;
+        /* 
+          Device = Most of the Smartphones Mobiles (Portrait)
+          Screen = 320px to 479px
+        */
       }
-      .flags {
-        .flag {
-          width: 3rem;
-          height: 2rem;
+    }
+    .image-container {
+      max-width: 480px;
+      width: 100vw;
+      margin-bottom: .5rem;
+      .tailleur {
+        height: 100%;
+        width: 100%;
+      }
+      // border: 3px solid yellow;
+      // height: 100px;
+      // width: 100%;
+      // background-image: url('./../../assets/images/victor-tailleur.jpg');
+      // background-repeat: no-repeat;
+      // height: 500px;
+    }
+    .after-image {
+      padding: 0rem;
+      @media (max-width: 500px) {
+        padding: 0 1rem;
+        /* 
+          Device = Most of the Smartphones Mobiles (Portrait)
+          Screen = 320px to 479px
+        */
+      }
+      .header {
+        font-size: 1.5rem;
+        
+      }
+      .victor-tailleur-container {
+        max-width: 450px;
+        .victor-tailleur {
+          width: 100%;
         }
-        .dutch-flag {
-  
-        }
-        .english-flag {
-  
+      }
+      .content {
+        margin: 1.5rem 0;
+        text-align: justify;
+        .link {
+          text-align: left;
         }
       }
     }
-    
-    .content {
-      margin: 1.5rem 0;
-      text-align: justify;
-    }
-    
   }
-}
-.background-image {
 }
 
 @media (min-width: 320px) and (max-width: 480px) {

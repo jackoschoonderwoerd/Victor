@@ -2,19 +2,16 @@ mat-toolbar {
   .toolbar-content {}
   background-color: var(--gray);
   color: var(--jazz-white);
-  @media (max-width: 767px) {
-    // background-color: var(--color-1);
-    // background-color: blue;
-    color: var(--background-color-1);
-  }
+  // @media (max-width: 767px) {
+  //   color: var(--background-color-1);
+  // }
   .toolbar-left {
     width: 100%;
     .menu {
       color: var(--jazz-orange)
     }
-    .close-window-header {
-      color: red;
-      opacity: 1;
+    .vdb-left {
+      padding-left: 1rem;
     }
     .filler {
       display: flex;

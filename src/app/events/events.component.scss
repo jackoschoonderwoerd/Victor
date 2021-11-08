@@ -1,0 +1,76 @@
+
+.section {
+  // border: 3px solid red;
+  .main {
+    padding: 1rem;
+    // border: 3px solid yellow;
+    max-width: 450px;
+    .title-flags {
+      .title {
+        font-size: 2rem;
+        font-weight: bold;
+        letter-spacing: .3rem;
+        text-transform: uppercase;
+      }
+      .flags {
+        .flag {
+          width: 3rem;
+          height: 2rem;
+        }
+        .dutch-flag {
+  
+        }
+        .english-flag {
+  
+        }
+      }
+    }
+    .header {
+      font-size: 1.5rem;
+      padding: .5rem 0;
+    }
+    .venue-header {
+      font-size: 1.5rem;
+      font-weight: 600;
+      padding: .5rem 0;
+    }
+    .events-list {
+      .events-list-item {
+        padding: .5rem 0;
+      }
+    }
+  }
+}
+.background-image {
+}
+
+@media (min-width: 320px) and (max-width: 480px) {
+  /* 
+    Device = Most of the Smartphones Mobiles (Portrait)
+    Screen = 320px to 479px
+  */
+}
+@media (min-width: 481px) and (max-width: 767px) {
+  /* 
+    Device = Low Resolution Tablets, Mobiles (Landscape)
+    Screen = 481px to 767px
+  */
+}
+@media (min-width: 768px) and (max-width: 1024px) {
+  /* 
+    Device = Tablets, Ipads (portrait)
+    Screen = 768px to 1024px
+  */
+}
+@media (min-width: 1025px) and (max-width: 1280px) {
+  /* 
+  Device = Laptops, Desktops
+  Screen = 1025px to 1280px
+  */
+}
+@media (min-width: 1281px) {
+  /* 
+  Device = Desktops
+  Screen = 1281px to higher resolution desktops
+  */
+}

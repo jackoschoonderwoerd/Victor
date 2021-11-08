@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { faWindowClose } from '@fortawesome/free-solid-svg-icons'
+import { ArtWork } from '../shared/models/artwork.model';
 
 @Component({
   selector: 'app-info',
@@ -10,6 +11,8 @@ import { faWindowClose } from '@fortawesome/free-solid-svg-icons'
 export class InfoComponent implements OnInit {
 
  faWindowClose = faWindowClose;
+
+ artwork: ArtWork
   
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any
@@ -17,6 +20,7 @@ export class InfoComponent implements OnInit {
 
   ngOnInit(): void {
     console.log(this.data);
+    this.artwork = this.data.artWork
   }
 
 }

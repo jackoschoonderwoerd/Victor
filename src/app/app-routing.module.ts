@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './auth/auth-guard';
+import { EventsComponent } from './events/events.component';
 import { HomeComponent } from './home/home.component';
 
 
@@ -9,6 +10,7 @@ import { HomeComponent } from './home/home.component';
 const routes: Routes = [
   { path: '', redirectTo: 'program', pathMatch: 'full'},
   { path: 'home', component: HomeComponent },
+  { path: 'events', component: EventsComponent },
   { path: 'gallery', loadChildren: () => import('./gallery/gallery.module').then(m => m.GalleryModule)},
   
   

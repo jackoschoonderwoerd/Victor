@@ -1,56 +1,30 @@
 <div class="section" fxLayout fxLayoutAlign="center">
-  <div class="main">
+  <div class="main" fxLayout="column">
+    <div class="name">
+      victor de boo
+    </div>
+    <div class="image-container">
+      <img class="tailleur" src="./../../assets/images/victor-tailleur.jpg" alt="">
+    </div>
+    <!-- <img class="victor-tailleur" src="./../../assets/images/victor-tailleur.jpg" alt=""> -->
+    <div class="after-image">
 
-    <div class="title-flags" fxLayout fxLayoutAlign="space-between">
-      <div class="title">
-        victor de boo
+      <div class="header">drummer & graphic artist </div>  
+      <div
+        class="content">
+    
+        Victor is a successful Dutch jazzdrummer and graphic artist. He performed and broadcasted live with legends like
+        George Duke, Gregory Porter, Oleta Adams, Chris Potter, Todd Rundgren, dr Lonnie Smith............ among many
+        others. When you see his work its clear he mainly gets his inspiration from his daily work as a musician. To get the
+        two occupations a bit separated from each other he choose to work under the name BOO graphic art
       </div>
-      <div class="flags" fxLayout fxLayoutGap="1rem">
-        <img
-          *ngIf="language === 'english'"
-          (click)="selectLanguage('dutch')"
-          fxLayoutAlign="end"
-          class="dutch-flag flag"
-          src="../../assets/images/flags/nl-flag.png"
-          alt="NL">
-        <img
-          *ngIf="language === 'dutch'"
-          (click)="selectLanguage('english')"
-          class="english-flag flag"
-          src="../../assets/images/flags/uk-flag.png"
-          alt="EN">
-      </div>
+      <p class="link">
+        For his work as a drummer check: <a href="https://www.victordeboo.nl" target="_blank">https://www.victordeboo.nl</a>
+      </p>
     </div>
 
-
-    <div
-      class="content"
-      *ngIf="language === 'dutch'">
-      Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolor iure harum minus quam vel itaque facere delectus
-      quo laboriosam similique, quibusdam quas officiis, labore eligendi obcaecati? Illo quia eveniet libero iure
-      accusamus deserunt, quibusdam quod repellendus aliquid illum aspernatur nam? Assumenda vel possimus, quod
-      aspernatur porro amet optio? Iste odio dolores culpa, officia dolorum ab nihil. Corporis ad iusto nobis quas
-      soluta cumque excepturi deserunt quae accusamus nesciunt aliquam sit, reiciendis eaque mollitia esse molestias
-      velit perferendis a dolor facere voluptatem! Distinctio laudantium, aliquam labore commodi quo ipsa reiciendis
-      dolorem qui consequatur earum, voluptate dolorum quam numquam, voluptatem ipsam iusto.
-    </div>
-
-    <div
-      *ngIf="language === 'english'"
-      class="content">
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate nobis dicta delectus dolor amet? Cum reiciendis
-      minima, ipsam aliquid praesentium rerum ipsa? Alias cupiditate dolorum similique odio ab neque, temporibus illum
-      laboriosam ad laborum tempore soluta quam quaerat atque magni, reiciendis nemo. Blanditiis maiores aliquid
-      voluptates laborum mollitia earum, tenetur qui alias eum facere ad illo beatae totam incidunt laudantium at!
-      Reiciendis, praesentium iusto temporibus amet odio a dignissimos molestias illum quos, adipisci optio similique
-      eveniet! Nesciunt corrupti ullam magni dicta sit consectetur soluta, qui sint amet, impedit ipsum accusantium ut
-      illo repudiandae dignissimos voluptates est dolores numquam asperiores velit iste, provident quidem similique.
-      Alias eius reprehenderit sit reiciendis a? Sequi a excepturi quos odio nobis quaerat hic tempora est voluptate
-      consequatur fugiat dolores ipsam minus temporibus ullam porro at eaque in, tempore nesciunt sunt? Minima sint,
-      earum beatae rerum, facere aperiam at voluptatum saepe itaque corrupti soluta excepturi vitae.
-    </div>
+  </div>  
 
 
 
-  </div>
 </div>

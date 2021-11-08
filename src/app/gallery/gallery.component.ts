@@ -79,9 +79,7 @@ export class GalleryComponent implements OnInit {
     console.log(artwork);
     this.dialog.open(InfoComponent, {
       data: {
-        title: artwork.title,
-        caption: artwork.caption,
-        price: artwork.price
+        artWork: artwork
       },
       minWidth: '320px'
 

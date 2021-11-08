@@ -29,6 +29,44 @@
           formControlName="title"
           placeholder="title">
       </mat-form-field>
+      <div class="year-width-height" fxLayout fxLayoutGap="1rem">
+        <mat-form-field>
+          <input
+            type="number"
+            matInput
+            formControlName="yearCreated"
+            placeholder="yearCreated">
+        </mat-form-field>
+        <mat-form-field>
+          <input
+            type="number"
+            matInput
+            formControlName="width"
+            placeholder="width(cm)">
+        </mat-form-field>
+        <mat-form-field>
+          <input
+            type="number"
+            matInput
+            formControlName="height"
+            placeholder="height(cm)">
+        </mat-form-field>
+      </div>
+      
+      <mat-selection-list formControlName="medium">
+        <mat-list-option color="primary" *ngFor="let medium of mediums" [value]="medium">
+          {{medium}}
+        </mat-list-option>
+      </mat-selection-list>
+
+      <mat-radio-group formControlName="bearer">
+        <mat-radio-button *ngFor="let bearer of bearers" [value]="bearer" color="primary" class="bearer">{{bearer}}</mat-radio-button>  
+
+        <!-- <mat-radio-button value="canvas" color="primary" class="bearer">canvas</mat-radio-button>  
+        <mat-radio-button value="paper" color="primary" class="bearer">paper</mat-radio-button>  
+        <mat-radio-button value="other" color="primary" class="bearer">other</mat-radio-button>       -->
+      </mat-radio-group>
+
       <mat-form-field>
         <input
           type="text"

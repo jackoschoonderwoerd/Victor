@@ -15,9 +15,21 @@
     .imageDataForm {
       border: 2px solid black;
       border-radius: 2px;
-      padding: 1rem
+      padding: 1rem;
+      .year-width-height {
+        mat-form-field {
+          width: calc((100% - 2rem) / 3);
+          input {
+            
+          }
+        }
+      }
+      .bearer {
+        width: calc(100%  / 3);
+        mat-radio-button {
+          border: 1px solid red;
+        }
+      }
     }
-  }
-
-  
+  }  
 }
